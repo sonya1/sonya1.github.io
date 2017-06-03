@@ -1,5 +1,5 @@
 ---
-title: Why Blog
+title: My Blog
 layout: post
 ---
 
@@ -13,6 +13,6 @@ layout: post
 
 ## 博客平台
 
-这个博客通过 [Jekyll](http://jekyllrb.com/) 生成，部署在 [Github](https://pages.github.com)，主题基于 [3-Jekyll](https://github.com/P233/3-Jekyll) 修改生成，非常感谢 [Peiwen Lu](https://github.com/P233) 开发出这么漂亮的主题。
+这个博客通过 [Jekyll](http://jekyllrb.com/) 生成，部署在 [Github](https://pages.github.com)，主题基于 [3-Jekyll](https://github.com/P233/3-Jekyll) 修改生成，非常感谢 [Peiwen Lu](https://github.com/P233) 开发出这么漂亮的主题。非常感谢[suyan](https://github.com/suyan),我的博客得以搭建成功，还有2017年之前的一些资源都是转自[suyan博客](http://yansu.org/)，在此十分感谢。
 
-我博客的源码托管在[Github](https://github.com/suyan/suyan.github.io)上，如果有任何改进意见，欢迎讨论。
+我博客的源码托管在[Github](https://github.com/sonya1/sonya1.github.io)上，如果有任何改进意见，欢迎讨论。
