@@ -13,4 +13,4 @@ description:
 主线程等待新建线程退出，pthread_join()函数。
 
 
-![tu](https://sonya1.github.io/assets/img/blog/thread_join.png)
+![图](https://sonya1.github.io/assets/img/blog/thread_join.png)
