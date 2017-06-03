@@ -1,6 +1,6 @@
 ---
 layout: post
-title: sizeof和strlen的区别 
+title: sizeof和strlen的区别_sonya
 category: 技术
 tags: C 
 description: 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: pthread_join的问题
+title: pthread_join的问题_sonya
 category: 技术
 tags: centOS linux
 description: 
@@ -13,7 +13,7 @@ description:
 主线程等待新建线程退出，pthread_join()函数。
 
 
-[tu](/assets/img/blog/therad_join.png)
+[tu](https://sonya1.github.io/assets/img/blog/thread_join.png)
 ~~~
 
 ~~~
