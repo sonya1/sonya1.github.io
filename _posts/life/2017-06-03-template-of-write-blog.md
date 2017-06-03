@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 写博客的模板
+title: 写博客的模板_sonya
 category: 生活
 tags: blog 
 keywords: blog
