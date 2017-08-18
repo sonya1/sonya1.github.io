@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 前端学习计划_sonya
-category: 生活
+category: 素笺
 tags: 前端 学习
 keywords: 前端 学习
 description: 
