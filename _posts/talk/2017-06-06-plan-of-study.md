@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 前端学习计划_sonya
+title: 前端学习计划
 category: talk
 tags: 前端 学习
 keywords: 前端 学习
@@ -15,6 +15,7 @@ css
 js
 jquery
 bootstrap
+node.js + express + mongodb
 
 HTML5教程
 CSS3教程
@@ -27,5 +28,5 @@ Node.js教程
 3.javascript面向对象编程指南
 4.javascript权威指南
 5.javascript语言精粹
-
+6.你不知道的JS
 ## 分析源码

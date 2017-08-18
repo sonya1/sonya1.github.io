@@ -1,8 +1,8 @@
 ---
 layout: post
-title: pthread_join的问题_sonya
+title: pthread_join的问题
 category: 后台
-tags: centOS linux
+tags: linux c
 description: 
 ---
 

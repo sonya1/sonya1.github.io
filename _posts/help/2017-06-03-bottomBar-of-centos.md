@@ -1,6 +1,6 @@
 ---
 layout: post
-title: centOS7 桌面的底边栏不见了_sonya
+title: centOS7 桌面的底边栏不见了
 category: help
 tags: centOS linux
 description: 

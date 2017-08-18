@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ssh协议解析_sonya
+title: ssh协议解析
 category: 后台
 tags: c语言 ssh
 description: 
