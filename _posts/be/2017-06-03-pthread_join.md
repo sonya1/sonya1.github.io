@@ -1,7 +1,7 @@
 ---
 layout: post
 title: pthread_join的问题_sonya
-category: 技术
+category: 后台
 tags: centOS linux
 description: 
 ---

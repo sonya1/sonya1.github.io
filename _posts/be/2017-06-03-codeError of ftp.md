@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 登陆FTP服务器代码实现_sonya
-category: 技术
+category: 后台
 tags: C FTP服务器
 description: 匿名登陆FTP服务器 发送命令的代码问题
 ---

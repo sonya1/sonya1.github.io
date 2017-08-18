@@ -1,7 +1,7 @@
 ---
 layout: post
 title: sizeof和strlen的区别_sonya
-category: 技术
+category: 后台
 tags: C 
 description: 
 ---

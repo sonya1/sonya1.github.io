@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 写博客的模板_sonya
-category: 帮助
+category: help
 tags: blog 
 keywords: blog
 description: 

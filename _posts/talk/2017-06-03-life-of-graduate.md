@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 研究生生活_sonya
-category: 生活
+category: talk
 tags: blog 
 keywords: blog
 description: 
