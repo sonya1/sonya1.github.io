@@ -13,7 +13,7 @@ keywords: 前端
 2.简而言之，每一张图片都应该有一个alt属性！alt属性，也被称为alt text, 是当图片无法加载时显示的替代文本。alt属性对于盲人或视觉损伤的用户理解一幅图片中所描绘的内容非常重要，搜索引擎也会搜索alt属性。
 
 3.如果你想把一个文本输入字段设置为必填项，在你的input元素中加上required属性就可以了，你可以使用：
-<input type="text" required>
+“<input type="text" required>”
 
 注意：required属性在Safari浏览器中不起作用，请用其他浏览器来学习，推荐使用Chrome。
 
@@ -21,7 +21,7 @@ keywords: 前端
 
 5.每一个复选按钮都应该嵌套进label元素中。所有关联的复选按钮应该具有相同的name属性。
 
-6.class="class1 class2" 注意：在 HTML 中这些 class 如何排序是无所谓的。然而，在 <style> 部分中 class 声明的顺序却非常重要，第二个声明总是比第一个具有优先权。因为 .blue-text 是第二个声明，它覆盖了 .pink-text 属性。
+6.class="class1 class2" 注意：在 HTML 中这些 class 如何排序是无所谓的。然而，在 style 部分中 class 声明的顺序却非常重要，第二个声明总是比第一个具有优先权。因为 .blue-text 是第二个声明，它覆盖了 .pink-text 属性。
 
 7.我们证明了无论在 style 元素 CSS 的哪个位置进行声明，id 声明都会覆盖 class 声明。
 
@@ -31,13 +31,13 @@ keywords: 前端
 
 
 10.html插件： object   embed
-
+```
 <object width="400" height="50" data="bookmark.swf"></object>
 <object width="100%" height="500px" data="snippet.html"></object>
 <object data="logo.png"></object>
 
 <embed width="400" height="50" src="/statics/demosource/bookmark.swf">
-
+```
 12.超链接设置
 text-decoration: 参数
 主要用途是改变浏览器显示文字链接时的下划线。 
