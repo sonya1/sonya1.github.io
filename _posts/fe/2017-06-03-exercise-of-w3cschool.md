@@ -81,11 +81,13 @@ super：以上标的形式显示。
 text-indent: 缩进距离。
 12px相当于一个文字距离。
 
-16。空格
+16.空格
 white-space: 参数
 normal 正常
 pre 保留
 nowrap 不换行
+
+
 17.显示样式 
 display: 参数 
 参数取值范围： 
