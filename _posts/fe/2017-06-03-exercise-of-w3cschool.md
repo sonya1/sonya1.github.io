@@ -42,44 +42,44 @@ keywords: 前端
 text-decoration: 参数
 主要用途是改变浏览器显示文字链接时的下划线。 
 参数取值范围： 
-underline：为文字加下划线 
-overline：为文字加上划线 
-line-through：为文字加删除线 
-blink：使文字闪烁 
-none：不显示上述任何效果
+underline：为文字加下划线。
+overline：为文字加上划线。
+line-through：为文字加删除线。 
+blink：使文字闪烁 。
+none：不显示上述任何效果。
 
 13.背景图片固定
 背景图片固定控制背景图片是否随网页的滚动而滚动。如果不设置背景图片固定属性，浏览器默认背景图片随网页的滚动而滚动。为了避免过于花哨的背景图片在滚动时转移浏览者的注意力，一般都设为固定
-background-attachment: 参数 
+background-attachment: 参数。 
 参数取值范围：
-fixed：网页滚动时，背景图片相对于浏览器的窗口而言，固定不动
-scroll：网页滚动时，背景图片相对于浏览器的窗口而言，一起滚动
+fixed：网页滚动时，背景图片相对于浏览器的窗口而言，固定不动。
+scroll：网页滚动时，背景图片相对于浏览器的窗口而言，一起滚动。
 
 14.单词间距 
-word-spacing: 间隔距离 
+word-spacing: 间隔距离。
 字母间距 
-letter-spacing: 字母间距
+letter-spacing: 字母间距。
 
 15.文本对齐
 text-align: 参数
 参数的取值：
-left：左对齐
-right：右对齐
-center：居中对齐
-justify：相对左右对齐
+left：左对齐。
+right：右对齐。
+center：居中对齐。
+justify：相对左右对齐。
 垂直对齐
 vertical-align: 参数
-top：顶对齐
-bottom：底对齐
-text-top：相对文本顶对齐
-text-bottom：相对文本底对齐
-baseline：基准线对齐
-middle：中心对齐
-sub：以下标的形式显示
-super：以上标的形式显示
+top：顶对齐。
+bottom：底对齐。
+text-top：相对文本顶对齐。
+text-bottom：相对文本底对齐。
+baseline：基准线对齐。
+middle：中心对齐。
+sub：以下标的形式显示。
+super：以上标的形式显示。
 文本缩进
-text-indent: 缩进距离
-12px相当于一个文字距离
+text-indent: 缩进距离。
+12px相当于一个文字距离。
 
 16。空格
 white-space: 参数
