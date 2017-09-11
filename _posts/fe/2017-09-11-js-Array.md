@@ -1,0 +1,214 @@
+---
+layout: post
+title: 数组--《js高级程序设计》
+category: 前端
+keywords: 前端
+---
+
+### 数组的基本方法
+` 栈方法：
+push():从后加
+pop():从后出
+
+` 队列方法：
+push():从后加
+shift():从头出
+
+` 反向队列方法：
+push():从头加
+pop():从后出
+
+
+### 迭代方法 every()、some() filter() map() reduce() 
+```
+var numbers = [1,2,3,4,5,4,3,2,1];
+
+var everyResult = numbers.every(function(item, index, array){
+return (item > 2);
+});
+
+alert(everyResult);       //false
+
+var someResult = numbers.some(function(item, index, array){
+return (item > 2);
+});
+
+alert(someResult);       //true
+```
+
+```
+var numbers = [1,2,3,4,5,4,3,2,1];
+
+var filterResult = numbers.filter(function(item, index, array){
+return (item > 2);
+});
+
+alert(filterResult);   //[3,4,5,4,3]
+```
+
+```
+var numbers = [1,2,3,4,5,4,3,2,1];
+
+var mapResult = numbers.map(function(item, index, array){
+return item * 2;
+});
+
+alert(mapResult);   //[2,4,6,8,10,8,6,4,2]
+
+```
+
+
+```
+var values = [1,2,3,4,5];
+var sum = values.reduce(function(prev, cur, index, array){
+return prev + cur;
+});
+alert(sum);  //15
+
+```
+
+```
+function appendCurrent (previousValue, currentValue) {
+return previousValue + "::" + currentValue;
+}
+
+var elements = ["abc", "def", 123, 456];
+
+var result = elements.reduce(appendCurrent);
+
+document.write(result);
+
+// Output   ::def::123::456
+
+
+### 位置方法 indexOf lastIndexOf
+```
+var numbers = [1,2,3,4,5,4,3,2,1];
+
+// alert(numbers.indexOf(4));        //3
+// alert(numbers.lastIndexOf(4));    //5
+
+// alert(numbers.indexOf(4, 4));     //5
+// alert(numbers.lastIndexOf(4, 4)); //3       
+
+var person = { name: "Nicholas" };
+var people = [{ name: "Nicholas" }];
+
+var morePeople = [person];
+
+alert(people.indexOf(person));     //-1
+alert(morePeople.indexOf(person)); //0
+
+/*morePeople 是一个数组，他的第一个对象为 person 所以能找到，
+people也是一个数组，他的第一个对象没名字，所以用person找不到，比较的是地址，不是内部*/
+```
+
+
+
+```
+### 默认调用toString()
+```
+var person1 = {
+toLocaleString : function () {
+return "Nikolaos";
+},
+
+toString : function() {
+return "Nicholas";
+}
+};
+
+var person2 = {
+toLocaleString : function () {
+return "Grigorios";
+},
+
+toString : function() {
+return "Greg";
+}
+};
+
+var people = [person1, person2];
+alert(people);                      //Nicholas,Greg
+alert(people.toString());           //Nicholas,Greg
+alert(people.toLocaleString());     //Nikolaos,Grigorios
+```
+
+
+### 重排序方法 reverse() sort()
+```
+var values = [1, 2, 3, 4, 5];
+values.reverse();
+alert(values);       //5,4,3,2,1    
+```
+
+```
+var values = [0, 1, 5, 10, 15];
+values.sort();
+alert(values);    //0,1,10,15,5
+```
+
+```
+function compare(value1, value2) {
+    if (value1 < value2) {
+        return -1;
+    } else if (value1 > value2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+var values = [0, 1, 5, 10, 15];
+values.sort(compare);
+alert(values);    //0,1,5,10,15  
+
+```
+
+```
+function compare(value1, value2) {
+    if (value1 < value2) {
+        return 1;
+    } else if (value1 > value2) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+var values = [0, 1, 5, 10, 15];
+values.sort(compare);
+alert(values);    //15,10,5,1,0
+
+```
+
+### slice splice
+
+```
+var colors = ["red", "green", "blue", "yellow", "purple"];
+var colors2 = colors.slice(1);
+var colors3 = colors.slice(1,4);
+
+alert(colors2);   //green,blue,yellow,purple
+alert(colors3);   //green,blue,yellow
+
+
+var colors = ["red", "green", "blue"];
+var removed = colors.splice(0,1);              //remove the first item
+alert(colors);     //green,blue
+alert(removed);    //red - one item array
+
+removed = colors.splice(1, 0, "yellow", "orange");  //insert two items at position 1
+alert(colors);     //green,yellow,orange,blue
+alert(removed);    //empty array
+
+removed = colors.splice(1, 1, "red", "purple");    //insert two values, remove one
+alert(colors);     //green,red,purple,orange,blue
+alert(removed);    //yellow - one item array
+
+
+```
+
+
+
+
