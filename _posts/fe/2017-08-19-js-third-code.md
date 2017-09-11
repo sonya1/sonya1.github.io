@@ -1,0 +1,333 @@
+---
+layout: post
+title: 第三章--《js高级程序设计》
+category: 前端
+keywords: 前端
+---
+
+### break与continue
+```
+	var num = 0;
+        
+    outermost:
+    for (var i=0; i < 10; i++) {
+         for (var j=0; j < 10; j++) {
+            if (i == 5 && j == 5) {
+                break outermost;
+            }
+            num++;
+        }
+    }
+    
+    alert(num);    //55
+```
+
+```
+var num = 0;
+        
+for (var i=0; i < 10; i++) {
+     for (var j=0; j < 10; j++) {
+        if (i == 5 && j == 5) {
+            break;
+        }
+        num++;
+    }
+}
+
+alert(num);    //95
+```
+
+```
+var num = 0;
+        
+outermost:
+for (var i=0; i < 10; i++) {
+
+     for (var j=0; j < 10; j++) {
+        console.log("i-->"+i+" ,j-->"+j);
+        if (i == 5 && j == 5) {
+            continue outermost;  //  跳到外层 下次从i=6，j=0开始，所以少了5次
+        }
+        num++;
+    }
+}
+
+alert(num);    //95
+```
+
+```
+var num = 0;
+        
+for (var i=0; i < 10; i++) {
+     for (var j=0; j < 10; j++) {
+        if (i == 5 && j == 5) {
+            break;
+        }
+        num++;
+    }
+}
+
+alert(num);    //95
+
+```
+
+
+```
+var num = 0;
+        
+outermost:
+for (var i=0; i < 10; i++) {
+
+     for (var j=0; j < 10; j++) {
+        console.log("i-->"+i+" ,j-->"+j);
+        if (i == 5 && j == 5) {
+            continue outermost;  //  跳到外层 下次从i=6，j=0开始，所以少了5次
+        }
+        num++;
+    }
+}
+
+alert(num);    //95
+
+```
+
+```
+var num = 0;
+        
+for (var i=0; i < 10; i++) {
+
+     for (var j=0; j < 10; j++) {
+        console.log("i-->"+i+" ,j-->"+j);
+        if (i == 5 && j == 5) {
+            continue;  //跳出本次循环
+        }
+        num++;
+    }
+}
+
+alert(num);    //99
+
+```
+### 除法
+```
+alert(5 / 5);           //1
+alert(5 / NaN);         //NaN
+alert(Infinity / Infinity);    //NaN
+alert(Infinity / 2);    //Infinity
+alert(5 / 0);           //Infinity
+alert(10 / true);       //10
+alert(10 / false);      //Infinity
+```
+
+
+### 等于 全等
+```
+alert(null == undefined);    //true
+alert(null === undefined);   //false
+
+alert("NaN" == NaN);        //false
+alert("NaN" === NaN);       //false
+alert(NaN == NaN);          //false
+alert(NaN === NaN);         //false
+alert(NaN != NaN);          //true
+alert(NaN !== NaN);         //true
+
+alert(false == 0);          //true
+alert(false === 0);         //false
+alert(true == 1);           //true
+alert(true === 1);          //false
+
+alert(null == 0);           //false
+alert(undefined == 0);      //false
+
+alert(5 == "5");            //true
+alert(5 === "5");           //false      
+```
+
+### arguments
+```
+ function doAdd(num1, num2) {
+    //if(arguments.length == 1) {
+        arguments[1] = 10;
+    //}
+    alert(arguments[0] + num2);
+}
+
+doAdd(10, 20);        //20
+doAdd(30, 20);    //40
+```
+
+### ++ --
+```
+var s1 = "2";
+var s2 = "z";
+var b = false;
+var f = 1.1;
+var o = { 
+    valueOf: function() {
+        return -1;
+    }
+};
+
+s1++;   //value becomes numeric 3
+s2++;   //value becomes NaN
+b++;    //value becomes numeric 1
+f--;    //value becomes 0.10000000000000009
+o--;    //value becomes numeric –2  
+
+```
+
+### 与或非 执行
+```
+var found = true;
+var result = (found && someUndeclaredVariable);    //error occurs here
+alert(result);    //this line never executes
+
+var found = false;
+var result = (found && someUndeclaredVariable);    //no error
+alert(result);    //works
+
+var found = true;
+var result = (found || someUndeclaredVariable);    //no error
+alert(result);    //works
+
+
+var found = false;
+var result = (found || someUndeclaredVariable);    //error occurs here
+alert(result);    //this line never executes
+
+alert(!false);      //true
+alert(!"blue");     //false
+alert(!0);          //true
+alert(!NaN);        //true
+alert(!"");         //true
+alert(!12345);      //false
+
+
+alert(!!"blue");     //true
+alert(!!0);          //false
+alert(!!NaN);        //false
+alert(!!"");         //false
+alert(!!12345);      //true
+
+```
+
+### 各种运算:取模、乘法、除法
+
+```
+alert(26 % 5);          //1
+alert(Infinity % 3);    //NaN
+alert(3 % 0);           //NaN
+alert(5 % Infinity);    //5
+alert(0 % 10);          //0
+alert(true % 25);       //1
+alert(3 % false);       //NaN
+
+
+alert(5 * 6);           //30
+alert(5 * NaN);         //NaN
+alert(Infinity * 0);    //NaN
+alert(Infinity * 2);    //Infinity
+alert("5" * 5);         //25
+alert(true * 10);       //10
+alert(false * 10);      //0
+
+
+alert(NaN == NaN);       //false
+alert(isNaN(NaN));       //true
+alert(isNaN(10));        //false – 10 is a number
+alert(isNaN("10"));      //false – can be converted to number 10
+alert(isNaN("blue"));    //true – cannot be converted to a number
+alert(isNaN(true));      //false – can be converted to number 1
+
+
+var num1 = Number("Hello world!");  //NaN
+var num2 = Number("");              //0
+var num3 = Number("000011");        //11
+var num4 = Number(true);            //1
+
+
+var num1 = parseInt("1234blue");    //1234
+var num2 = parseInt("");            //NaN
+var num3 = parseInt("0xA");         //10 - hexadecimal
+var num4 = parseInt(22.5);          //22
+var num5 = parseInt("70");          //70 - decimal
+var num6 = parseInt("0xf");         //15 – hexadecimal
+
+var num1 = parseInt("AF", 16);        //175
+var num2 = parseInt("AF");            //NaN
+
+var num1 = parseFloat("1234blue");    //1234 - integer
+var num2 = parseFloat("0xA");         //0
+var num3 = parseFloat("22.5");        //22.5
+var num4 = parseFloat("22.34.5");     //22.34
+var num5 = parseFloat("0908.5");      //908.5
+var num6 = parseFloat("3.125e7");     //31250000
+
+
+var result1 = 5 > 3;    //true
+var result2 = 5 < 3;    //false
+var result3 = "Brick" < "alphabet";  //true
+var result4 = "Brick".toLowerCase() < "alphabet".toLowerCase();  //false
+var result5 = "23" < "3";  //true
+var result6 = "23" < 3;    //false
+var result7 = "a" < 3;    //false because "a" becomes NaN
+var result8 = NaN < 3;    //false
+var result9 = NaN >= 3;   //false
+
+
+var result1 = 5 - true;    //4 because true is converted to 1
+var result2 = NaN - 1;     //NaN
+var result3 = 5 - 3;       //2
+var result4 = 5 - "";      //5 because "" is converted to 0
+var result5 = 5 - "2";     //3 because "2" is converted to 2
+var result6 = 5 - null;    //5 because null is converted to 0
+
+
+var s1 = "01";
+var s2 = "1.1";
+var s3 = "z";
+var b = false;
+var f = 1.1;
+var o = { 
+    valueOf: function() {
+        return -1;
+    }
+};
+
+s1 = +s1;   //value becomes numeric 1
+s2 = +s2;   //value becomes numeric 1.1
+s3 = +s3;   //value becomes NaN
+b = +b;     //value becomes numeric 0
+f = +f;     //no change, still 1.1
+o = +o;     //value becomes numeric –1
+
+
+var s1 = "01";
+var s2 = "1.1";
+var s3 = "z";
+var b = false;
+var f = 1.1;
+var o = { 
+    valueOf: function() {
+        return -1;
+    }
+};
+
+s1 = -s1;   //value becomes numeric -1
+s2 = -s2;   //value becomes numeric -1.1
+s3 = -s3;   //value becomes NaN
+b = -b;     //value becomes numeric 0
+f = -f;     //change to –1.1
+o = -o;     //value becomes numeric 1
+
+
+var oldValue = -64;              //equal to binary 11111111111111111111111111000000
+var newValue = oldValue >>> 5;   //equal to decimal 134217726
+alert(newValue);                 //134217726
+
+```
+
+
+
+
