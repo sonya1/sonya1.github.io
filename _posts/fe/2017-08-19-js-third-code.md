@@ -7,19 +7,19 @@ keywords: 前端
 
 ### break与continue
 ```
-	var num = 0;
-        
-    outermost:
-    for (var i=0; i < 10; i++) {
-         for (var j=0; j < 10; j++) {
-            if (i == 5 && j == 5) {
-                break outermost;
-            }
-            num++;
-        }
-    }
+var num = 0;
     
-    alert(num);    //55
+outermost:
+for (var i=0; i < 10; i++) {
+     for (var j=0; j < 10; j++) {
+        if (i == 5 && j == 5) {
+            break outermost;
+        }
+        num++;
+    }
+}
+
+alert(num);    //55
 ```
 
 ```
@@ -157,7 +157,7 @@ doAdd(10, 20);        //20
 doAdd(30, 20);    //40
 ```
 
-### ++ --
+### ++ ---
 ```
 var s1 = "2";
 var s2 = "z";
