@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 写博客的模板
-category: help
+title: 写博客的模板 markdown
+category: 技能
 tags: blog 
 keywords: blog
 description: 

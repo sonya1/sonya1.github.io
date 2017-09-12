@@ -1,7 +1,7 @@
 ---
 layout: post
 title: centOS7 桌面的底边栏不见了
-category: help
+category: 技能
 tags: centOS linux
 description: 
 ---
