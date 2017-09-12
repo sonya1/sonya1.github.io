@@ -42,7 +42,6 @@ var num = 0;
         
 outermost:
 for (var i=0; i < 10; i++) {
-
      for (var j=0; j < 10; j++) {
         console.log("i-->"+i+" ,j-->"+j);
         if (i == 5 && j == 5) {
@@ -55,47 +54,12 @@ for (var i=0; i < 10; i++) {
 alert(num);    //95
 ```
 
-```
-var num = 0;
-        
-for (var i=0; i < 10; i++) {
-     for (var j=0; j < 10; j++) {
-        if (i == 5 && j == 5) {
-            break;
-        }
-        num++;
-    }
-}
-
-alert(num);    //95
-
-```
 
 
 ```
 var num = 0;
         
-outermost:
 for (var i=0; i < 10; i++) {
-
-     for (var j=0; j < 10; j++) {
-        console.log("i-->"+i+" ,j-->"+j);
-        if (i == 5 && j == 5) {
-            continue outermost;  //  跳到外层 下次从i=6，j=0开始，所以少了5次
-        }
-        num++;
-    }
-}
-
-alert(num);    //95
-
-```
-
-```
-var num = 0;
-        
-for (var i=0; i < 10; i++) {
-
      for (var j=0; j < 10; j++) {
         console.log("i-->"+i+" ,j-->"+j);
         if (i == 5 && j == 5) {
