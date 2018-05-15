@@ -9,7 +9,7 @@ description: 两栏布局
 
 ## 两栏布局，左侧定宽，右侧自适应
 ![图1](https://sonya1.github.io/assets/img/work_fight/layout_two.png)
-### - 浮动布局：左侧定宽:float：left，右侧：margin-left：左侧宽度
+### - 1.浮动布局：左侧定宽:float：left，右侧：margin-left：左侧宽度
 ```
 <style>
 .er1_parent .left{
@@ -29,7 +29,7 @@ description: 两栏布局
 </div>
 ```
 
-### -BFC布局：左侧定宽、float：left，右侧：overflow：hidden（BFC）
+### - 2.BFC布局：左侧定宽、float：left，右侧：overflow：hidden（BFC）
 ```
 <style>
 .er2_parent .left{
@@ -49,7 +49,7 @@ description: 两栏布局
 </div>
 ```
 
-### -flex布局：父级dislpay：flex，左侧定宽，右侧：flex：1
+### - 3.flex布局：父级dislpay：flex，左侧定宽，右侧：flex：1
 ```
 <style>
 .er3_parent{
@@ -72,7 +72,7 @@ description: 两栏布局
 </div>
 ```
 
-### -绝对定位布局：父级相对定位，左侧绝对定位，定在左侧，右侧margin-left
+### - 4.绝对定位布局：父级相对定位，左侧绝对定位，定在左侧，右侧margin-left
 ```
 <style>
 .er4_parent{
