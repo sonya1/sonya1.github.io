@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 跨域
+title: 跨域大全
 category: workFighting
 tags: 跨域
 keywords: 跨域
