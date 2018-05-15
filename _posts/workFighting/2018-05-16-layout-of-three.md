@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 布局总结2——三栏布局
-category: fighting!!!
+category: workFighting
 tags: 三栏布局
 keywords: 三栏布局
 description: 三栏布局
