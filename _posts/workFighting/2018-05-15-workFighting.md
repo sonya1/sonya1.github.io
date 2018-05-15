@@ -391,7 +391,7 @@ User-Agent:Mozilla/5.0
 
 2.Access-Control-Request-Headers：该字段是一个逗号分隔的字符串，指定浏览器CORS请求会额外发送的头信息字段，上例是X-Custom-Header。
 
-####　6.4.2预检请求的回应
+#### 6.4.2预检请求的回应
 服务器收到“预检”请求以后，检查了Origin，Access-Control-Request-Method，Access-Control-Request-Headers字段以后，确认允许跨源请求，就可以做出回应。
 ```
 HTTP/1.1 200 OK
