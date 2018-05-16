@@ -12,7 +12,7 @@ description:
 | - | :-: | -: |   
 | http://www.a.com/a.js，http://www.a.com/b.js | 同一域名下| 允许 |   
 | http://www.a.com/lab/a.js，http://www.a.com/scripts/b.js | 同一域名下不同文件夹| 允许 |  
-| http://www.a.com：8000/a.js，http://www.a.com/b.js | 同一域名，不同端口| 不允许（默认端口80,8080） |  
+| http://www.a.com：8000/a.js，http://www.a.com/b.js | 同一域名，不同端口| 不允许（默认端口80） |  
 | http://www.a.com/a.js，https://www.a.com/b.js | 同一域名，不同协议| 不允许 |   
 | http://www.a.com/a.js，http://70.32.92.74/b.js | 域名和域名对应IP| 不允许 |   
 | http://www.a.com/a.js，http://script.a.com/b.js | 主域相同，子域不同| 不允许 |   
@@ -455,6 +455,9 @@ CORS与JSONP的使用目的相同，但是CORS比JSONP更强大。
 JSONP只支持GET请求，CORS支持所有类型的HTTP请求。
 
 JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。
+
+CORS：原文来自：阮一峰老师的博客
+其中有些内容来自：http://www.zyy1217.com的博客
 
 
 
