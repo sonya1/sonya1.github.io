@@ -7,6 +7,8 @@ keywords: CommonJS，AMD，CMD
 description: CommonJS，AMD，CMD
 ---
 
+原文来自：[媛媛的小窝——前端模块化](http://www.zyy1217.com/2016/12/30/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/)
+
 前端模块化
 在JavaScript发展初期就是为了实现简单的页面交互逻辑，寥寥数语即可；如今CPU、浏览器性能得到了极大的提升，很多页面逻辑迁移到了客户端（表单验证等），随着web2.0时代的到来，Ajax技术得到广泛应用，jQuery等前端库层出不穷，前端代码日益膨胀
 
