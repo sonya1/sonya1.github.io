@@ -7,6 +7,8 @@ keywords: Javascript深克隆
 description: Javascript深克隆原理与实现
 ---
 
+原文来自：[媛媛的小窝——Javascript深克隆原理与实现](http://www.zyy1217.com/2017/01/05/Javascript%E6%B7%B1%E5%85%8B%E9%9A%86%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/)
+
 一. js中的对象
 谈到对象的克隆，必定要说一下对象的概念。
 
