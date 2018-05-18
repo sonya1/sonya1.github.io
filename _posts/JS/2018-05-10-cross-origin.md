@@ -31,7 +31,7 @@ description:
   假设你已经写了一个服务，他处理GET请求并返回JSON编码的数据。同源的文档可以在代码中使用XMLHttpRequest和JSON.parse()。假设在服务器上启用了CORS，在新的浏览器下，跨域的文档也可以使用XMLHttpRequest享受到该服务。在不支持CORS的旧的浏览器下，跨域文档只能通过script元素访问这个服务。使用JSONP，JSON响应数据（理论上）适合放的JS代码，当他到达浏览器将执行他。相反，不使用jSONP,而是对JSON编码过的数据解码，结果还是数据，并没有做任何事情。  
   
   这就是JSONP中P的意义所在。当通过script元素调用数据时，响应内容必须用JavaScript函数名和圆括号包裹起来。而不是发送这样一段JSON数据：[1,2,{"name":"sonya"}]。他会发送这样一个包裹后的JSON响应：
-  ```
+  ```javascript
   handleResponse(
     [1,2,{"name":"sonya"}]
   )
@@ -42,7 +42,7 @@ description:
   为了可行起见，我们必须通过某种方式告诉服务，它正在从一个script元素调用，必须返回一个JSONP响应，而不应该是普通的JSON响应。这个可以通过在URL中添加一个查询参数来实现：例如，追加“?json”(或&json)。  
   
   在实践中，支持JSONP的服务不会强制指定客户端必须实现的回调函数名称，比如handleResponse。相反，它们使用查询参数的值，允许客户端指定一个函数名，然后使用函数名去填充响应。（见下例）许多支持JSONP的服务都能分辨出这个参数名。另一个常见的参数名称是callback，为了让使用到的服务支持类似特殊的需求，就需要在代码上做一些修改了。  
-  ```
+  ```javascript
   //根据指定的url发送一个JSONP请求
 //然后把解析得到的响应数据传递给回调函数
 //在URL中添加一个名为jsonp的查询参数，用于指定该请求的回调函数的名称
@@ -92,15 +92,17 @@ getJSONP.counter = 0;  //用于创建唯一回调函数名称的计数器
   3.客户端解析script标签，并执行返回的js脚本，此时数据作为参数，传入到了客户端预先定义的callback函数里（动态执行回调函数）。  
   
   举个例子：
-  ```
-  //客户端
+  客户端
+  ```javascript
   <script>
     function doSomething(jsonData){
       //处理获得的json数据
     }
   </script>
   <script src="http://example.com/data.php?callback=doSomething"></script>
-  //服务器端 data.php
+  ```
+服务器端 data.php
+  ```php
   <?php
     $callback = $_GET['callback'];
     $data = array(1,2,3);
@@ -108,8 +110,10 @@ getJSONP.counter = 0;  //用于创建唯一回调函数名称的计数器
   ?>
   ```
   注意：链接要放在回调函数的下面。
+  
 ### Jquery实现jsonp调用
-```
+
+```javascript
 $(function(){
   $.ajax({
     type:"get",
@@ -131,7 +135,7 @@ jQuery在处理jsonp类型的ajax时，自动帮你生成回调函数并把数�
 
 ## 2.主域相同可以设置document.domain
 对于主域相同而子域不同的例子，可以通过设置document.domain的办法来解决。具体的做法是可以在http://www.a.com/a.html和http://script.a.com/b.html两个文件中分别加上document.domain = ‘a.com’；然后通过a.html文件中创建一个iframe，去控制iframe的contentDocument，这样两个js文件之间就可以“交互”了。当然这种办法只能解决主域相同而二级域名不同的情况，如果把script.a.com的domian设为alibaba.com，会报错！举例如下：
-```
+```html
 //www.a.com上的a.html
 document.domain = 'a.com';
 var ifr = document.createElement('iframe');
@@ -162,7 +166,7 @@ document.domain = 'a.com';
 这个办法比较绕，但是可以解决完全跨域情况下的脚步置换问题。原理是利用location.hash来进行传值。在url： http://a.com#helloword 中的‘#helloworld’就是location.hash，改变hash并不会导致页面刷新，所以可以利用hash值来进行数据传递，当然数据容量是有限的。
 
 假设域名a.com下的文件cs1.html要和cnblogs.com域名下的cs2.html传递信息，cs1.html首先创建自动创建一个隐藏的iframe，iframe的src指向cnblogs.com域名下的cs2.html页面，这时的hash值可以做参数传递用。cs2.html响应请求后再将通过修改cs1.html的hash值来传递数据（由于两个页面不在同一个域下，IE、Chrome不允许修改parent.location.hash的值，所以要借助于a.com域名下的一个代理iframe；Firefox可以修改）。同时在cs1.html上加一个定时器，隔一段时间来判断location.hash的值有没有变化，有变化则获取hash值。代码如下：
-```
+```javascript
 //先是a.com下的文件cs1.html文件：
 function startRequest(){
     var ifr = document.createElement('iframe');
@@ -224,7 +228,7 @@ b.com/data.html： 应用页面需要获取数据的页面，可称为数据页�
 
 在应用页面（a.com/app.html） 中创建一个iframe，把其src指向数据页面（b.com/data.html）。
 数据页面会把数据附加到这个iframe的window.name上，data.html代码如下：
-```
+```javascript
 <script type="text/javascript">
     window.name = 'I was there!';    // 这里是要传输的数据，大小一般为2M，IE和firefox下可以大至32M左右
                                      // 数据格式可以自定义，如json、字符串
@@ -232,7 +236,7 @@ b.com/data.html： 应用页面需要获取数据的页面，可称为数据页�
 ```
 
 在应用页面（a.com/app.html） 中监听iframe的onload事件，在此事件中设置这个iframe的src指向本地域的代理文件（代理文件和应用页面在同一域下，所以可以相互通信）。app.html部分代码如下：
-```
+```javascript
 <script type="text/javascript">
     var state = 0, 
     iframe = document.createElement('iframe'),
@@ -275,7 +279,7 @@ otherWindow: 对接收信息页面的window的引用。可以是页面中iframe�
 message: 所要发送的数据，string类型。
 targetOrigin: 用于限制otherWindow，“*”表示不作限制
 以下是演示a.com/index.html向b.com/index.html传送数据
-```
+```javascript
 a.com/index.html中的代码：
 
 <iframe id="ifr" src="b.com/index.html"></iframe>
@@ -322,7 +326,7 @@ CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持�
 
 ### 6.3 简单请求
 对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息中，增加一个Origin字段。
-```
+```http
 GET /cors HTTP/1.1
 Origin:http://api.bob.com
 Host:api.alice.com
@@ -335,7 +339,7 @@ User-Agent:Mozilla/5.0
 如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段，就知道出错了，从而抛出一个错误，呗XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。
 
 如果Origin指定的源在许可范围内，服务器返回的响应，会多出几个头信息字段。
-```
+```http
 Access-Control-Allow-Origin:http://api.bob.com
 Access-Control-Allow-Credentials:true
 Access-Control-Expose-Headers:FooBar
@@ -351,7 +355,7 @@ Content-Type:text-html;charset=utf-8
 
 ### withCredentials属性
 上面说到，CORS请求默认不发送Cookie和HTTP认证信息。如果要把Cookie发到服务器，一方面要服务器同意，指定Access-Control-Allow-Credentials：true，另一方面，开发者必须在Ajax请求中打开withCredentials属性。
-```
+```javascript
 var xhr = new XMLHttpRequest();
 xhr.withCredents = true;
 ```
@@ -368,7 +372,7 @@ xhr.withCredents = true;
 非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为“预检”请求。
 
 浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。
-```
+```javascript
 var url = "http://api.alice.com/cors"
 var xhr = new XMLHttpRequest();
 xhr.open("PUT",url,true);
@@ -376,7 +380,7 @@ xhr.setRequestHeader('X-Custom-Header',"value");  //发送自定义头信息X-Cu
 xhr.send();
 ```
 浏览器发现这是一个非简单请求，就自动发出一个“预检”请求，要求服务器确认可以这样请求。下面是这个“预检”请求的HTTP头信息。
-```
+```http
 OPTIONS /cors HTTP/1.1
 Origin:http://api.bob.com
 Access-Control-Request-Method:PUT
@@ -393,7 +397,7 @@ User-Agent:Mozilla/5.0
 
 #### 6.4.2预检请求的回应
 服务器收到“预检”请求以后，检查了Origin，Access-Control-Request-Method，Access-Control-Request-Headers字段以后，确认允许跨源请求，就可以做出回应。
-```
+```http
 HTTP/1.1 200 OK
 Date:Mon,01 Dec 2008 01:15:39 GMT
 Server:Apache/2.0.61(Unix)
@@ -415,7 +419,7 @@ XMLHttpRequest cannot load http://api.alice.com.
 Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.
 ```
 服务器回应的其他CORS相关字段如下。
-```
+```http
 Access-Control-Allow-Methods:GET,POST,PUT
 Access-Control-Allow-Headers:X-Custom-Header
 Access-Control-Allow-Credentials:true
@@ -433,7 +437,7 @@ Access-Control-Max-Age:1728000
 一旦服务器通过了"预检"请求,以后每次正常的CORS请求，就都跟简单请求一样，会有一个Origin头信息字段。服务器的回应，也都会有一个Access-Control-Allow-Origin头信息字段。
 
 下面是“预检”请求之后，浏览器的正常CORS请求。
-```
+```http
 PUT /cors HTTP/1.1
 Origin:http://api.bob.com
 Host:api.alice.com
@@ -443,7 +447,7 @@ Connection:keep-alive
 User-Agent:Mozilla/5.0...
 ```
 上面的头信息Origin字段是浏览器自动添加的。下面是服务器正常的回应。
-```
+```http
 Access-Control-Allow-Origin:http://api.bob.com
 Content-Type:text-html;charset=utf-8
 ```
