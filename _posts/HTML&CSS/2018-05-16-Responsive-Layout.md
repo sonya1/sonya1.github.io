@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 布局方式之响应式布局
-category: workFighting
+category: HTML&CSS
 tags: 响应式布局
 keywords: 响应式布局
 description: 布局方式之响应式布局
