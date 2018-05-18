@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 跨域大全
-category: workFighting
+category: JS
 tags: 跨域
 keywords: 跨域
 description: 
