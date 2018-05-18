@@ -1,7 +1,7 @@
 ---
 layout: post
 title: flex布局
-category: HTML CSS
+category: HTML-CSS
 tags: flex
 keywords: flex
 description: flex layout

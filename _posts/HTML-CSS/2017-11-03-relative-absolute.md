@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CSS中的绝对定位与相对定位
-category: HTML CSS
+category: HTML-CSS
 keywords: 前端
 ---
 

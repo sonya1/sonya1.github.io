@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CSS3 transition过渡和animation动画
-category: HTML CSS
+category: HTML-CSS
 tags: CSS3
 keywords: transition/animation
 description: CSS3 transition过渡和animation动画

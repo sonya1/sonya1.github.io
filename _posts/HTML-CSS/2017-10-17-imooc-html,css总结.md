@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HTML/CSS实战总结--慕课网
-category: HTML CSS
+category: HTML-CSS
 keywords: 前端
 ---
 
