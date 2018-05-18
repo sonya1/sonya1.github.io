@@ -20,7 +20,7 @@ description:
 
 不含“SSH”字符的SSH报文为算法协商或密钥交换报文
 
-```
+```C
 struct ssh_head
 {
     unsigned int pckLen;  //32位Packet Length  一定有（除了版本协商）
@@ -37,7 +37,7 @@ Msgcode=20：算法协商。格式见下。
 
 Algorithm的结构体：
 
-```
+```C
 struct algorithms{
    char cookie[16];   //16字节 cookie
    unsigned int kexLen;   //32位 kex_length

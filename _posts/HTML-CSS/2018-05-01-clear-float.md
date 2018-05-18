@@ -9,7 +9,7 @@ description: 清除浮动
 
 ##  清除浮动--解决高度塌陷
 ### 1. 给浮动元素的父元素内末尾添加带clear属性的空元素
-```
+```html
 <div style="clear:both;"></div>
 ```
 新的空div块下移，达到撑开父元素的目的。
@@ -22,7 +22,7 @@ description: 清除浮动
 
 
 ### 2.给浮动元素的容器添加浮动
-```
+```css
 .container{
   float:left;
 }
@@ -30,7 +30,7 @@ description: 清除浮动
 - 可清除内部浮动，但是会使整体浮动，影响布局，不推荐。
 
 ### 3. 给浮动元素的容器（父元素）添加overflow + zoom
-```
+```css
 .fix{
   overflow:hidden; 
   zoom:1;
@@ -52,7 +52,7 @@ zoom是IE专有属性，可以设置对象缩放比例。显然，首选zoom:1�
 先来简单讲讲after，所谓after，就是指标签的最后一个子元素的后面。于是呢，我们可以用CSS代码生成一个具有clear属性的元素，其中的关键样式
 就是content了。或许您从网上看到的content里面的内容是”.”一个点，我试了很多次，貌似随便写什么东西都没有问题，
 比如content:’anything is ok’;没问题。于是有：
-```
+```css
 .fix{
   zoom : 1;
 }
@@ -68,7 +68,7 @@ zoom是IE专有属性，可以设置对象缩放比例。显然，首选zoom:1�
 ### float与JavaScript
 JavaScript可以改变CSS的属性，其他些属性还好，但是这个float值得一说，为何呢，因为float貌似是JavaScript中的一个关键字，不能使用
 obj.style.float="left";这样的句子，得使用其他写法。
-```
+```css
 //IE浏览器：
 obj.style.styleFloat = "left";
 

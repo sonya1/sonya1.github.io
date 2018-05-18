@@ -10,7 +10,7 @@ description: 三栏布局
 ## 三栏布局,左右定宽，中间自适应
 ![图1](https://sonya1.github.io/assets/img/work_fight/layout_three.png)
 ### - 1.flex布局--父级display：flex，左右定宽，中间flex：1
-```
+```html
 <style>
 .san1_parent{
   display: flex;
@@ -37,7 +37,7 @@ description: 三栏布局
 ```
 
 ### - 2.table布局--父级display：table，左中右display：table-cell，左右定宽，中间不设宽
-```
+```html
 <style>
 .san2_parent{
   display: table;
@@ -67,7 +67,7 @@ description: 三栏布局
 ```
 
 ### - 3.流式布局--左右中，左侧左浮动，右侧右浮动，中间margin-left，margin-right
-```
+```html
 <style>
 .san3_parent .left{
   float: left;
@@ -94,7 +94,7 @@ description: 三栏布局
 ```
 
 ### - 4.BFC布局--左右中，左侧左浮动，右侧右浮动，中间overflow：hidden（BFC）
-```
+```html
 <style>
 .san4_parent .left{
   float: left;
@@ -119,7 +119,7 @@ description: 三栏布局
 </div>
 ```
 ### - 5.圣杯布局--中左右，中间100%宽，左右定位
-```
+```html
 <style>
 .san5_parent{
   padding:0 220px 0 200px;
@@ -155,7 +155,7 @@ description: 三栏布局
 </div>
 ```
 ### - 6.双飞翼布局--中左右，中间padding
-```
+```html
 <style>
 .san6_parent{
 
@@ -192,7 +192,7 @@ description: 三栏布局
 </div>
 ```
 ### - 7.绝对定位
-```
+```html
 <style>
 .san7_parent{
   position: relative;

@@ -43,7 +43,7 @@ flex-wrap: nowrap（初始值） | wrap | wrap-re‘
 
 ### 5、响应式布局（Responsive Layout）
 做手机网站必加的一句头部(head)代码
-```
+```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, 
 user-scalable=no">
 ```
@@ -74,7 +74,7 @@ user-scalable - 用户是否可以手动缩放
 
 当你完成当你已经完成了无响应的网站，做的第一件事是在你的 HTML 页面，粘贴下面的代码到和标签之间。这将设置屏幕按1：1的尺寸显示，
 在 iPhone 和其他智能手机的浏览器提供网站全视图浏览，并禁止用户缩放页面。
-```
+```html
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="HandheldFriendly" content="true">
@@ -84,7 +84,7 @@ user-scalable属性能够解决ipad切换横屏之后触摸才能回到具体尺
 
 ### 2.通过媒体查询来设置样式media query
 media query 是响应式设计的核心，它能够和浏览器进行沟通，告诉浏览器页面如何呈现，假如一个终端的分辨率小于980px，那么可以这样写
-```
+```css
 @media screen and (max-width:980px){
      #head { … }
      #content { … }
@@ -95,7 +95,7 @@ media query 是响应式设计的核心，它能够和浏览器进行沟通，�
 
 ### 3.设置多种视图宽度
 假如我们要兼容ipad和iphone视图，我们可以这样设置：
-```
+```css
 /**ipad**/
 @media only screen and (min-width:768px)and(max-width:1024px){}
 /**iphone**/
@@ -109,7 +109,7 @@ media query 是响应式设计的核心，它能够和浏览器进行沟通，�
 css3引入了新的单位叫做rem,和em类似但对于Html元素，rem更方便使用。
 
 rem是相对于根元素的，不要忘记重置根元素字体大小：
-```
+```css
 html{font-size:100%;}
 //完成后，你可以定义响应式字体：
 @media (min-width:640px){body{font-size:1rem;}}
@@ -122,7 +122,7 @@ html{font-size:100%;}
 ### 5.响应式设计需要注意的问题
 
 1. 宽度不固定，可以使用百分比
-```
+```css
 #head{width:100%;}
 #content{width:50%;}
 ```
@@ -130,7 +130,7 @@ html{font-size:100%;}
 2.图片处理
 
 在html页面中的图片，比如文章里插入的图片我们都可以通过css样式max-width来进行控制图片的最大宽度，如：
-```
+```css
 #wrap img{
     max-width:100%;
     height:auto;
@@ -140,7 +140,7 @@ html{font-size:100%;}
 如此设置后ID为wrap内的图片会根据wrap的宽度改变已达到等宽扩充，height为auto的设置是为了保证图片原始的高宽比例，以至于图片不会失真。
 
 除了img标签的图片外我们经常会遇到背景图片，比如logo为背景图片：
-```
+```css
 #log a{
   display:block;
   width:100%;

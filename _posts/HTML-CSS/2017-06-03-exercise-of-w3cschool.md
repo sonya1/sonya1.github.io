@@ -31,7 +31,7 @@ keywords: 前端
 
 
 10.html插件： object   embed
-```
+```html
 <object width="400" height="50" data="bookmark.swf"></object>
 <object width="100%" height="500px" data="snippet.html"></object>
 <object data="logo.png"></object>
@@ -124,10 +124,11 @@ none：无显示
 
 
 媒体查询：
+```css
 @media 
 
 background-size: contain 自适应
 background-size: cover   保持比例 充满屏幕（所以会显示不全）
 background-size: 100% 100%  充满屏幕
-
+```
 			

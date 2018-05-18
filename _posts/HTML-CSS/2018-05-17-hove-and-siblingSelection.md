@@ -22,7 +22,7 @@ description: hover,兄弟选择器
 元素1显示红色，hover元素1时，元素2显示蓝色。css选择器 + 表示紧接在一个元素后的元素，而且二者有相同的父元素，即相邻兄弟选择器。 
 
 ### 2. a 和b 是普通的兄弟关系, 可以通过#a:hover ~ #b来控制b元素里面的元素样式
-```
+```html
 ul li:nth-child(1):hover~.move{
     background:pink;
 }
@@ -41,7 +41,7 @@ ul li:nth-child(1):hover~.move{
 ### 3.hover操作自己的子集元素以及所属子集元素的元素
 通过 > 与 + 来控制下个元素，子集元素，下个元素的子集元素的CSS
 
-```
+```html
 <style>
     #a {color : red;}
     #a:hover > .b{color : yellow;} 
@@ -61,7 +61,7 @@ ul li:nth-child(1):hover~.move{
 
 
 ### 1.相邻兄弟选择器 +
-```
+```html
 <style type="text/css">
     h1 + p {
         margin-top:50px;
@@ -85,7 +85,7 @@ h1标签的样式。
 
 当然这个也会循环查找，即当两个兄弟元素相同时，会一次循环查找： 
 
-```
+```html
 <style type="text/css">
     li + li {
         color:red;
@@ -106,7 +106,7 @@ h1标签的样式。
 
 ### 2.普通兄弟选择器~
 作用是查找某一个指定元素的后面的所有兄弟结点。（注意：后面的所有兄弟） 
-```
+```html
 <style type="text/css">
     h1 ~ p{
         color:red;
