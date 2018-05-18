@@ -9,7 +9,7 @@ description: hover,兄弟选择器
 
 ### 1.a与b是相邻兄弟关系，有相同的父节点
 可以通过 #a + #b{..}来控制#b里面的元素样式；
-```
+```html
 <style>
   #a {color : red;}
   #a:hover + #b{color : blue;}
