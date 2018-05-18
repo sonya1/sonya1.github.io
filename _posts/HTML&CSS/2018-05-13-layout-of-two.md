@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 布局总结1——两栏布局
-category: workFighting
+category: HTML&CSS
 tags: 两栏布局
 keywords: 两栏布局
 description: 两栏布局
