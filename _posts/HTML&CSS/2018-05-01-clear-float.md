@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 清除浮动的方法
-category: workFighting
+category: HTML&CSS
 tags: 清除浮动
 keywords: 清除浮动
 description: 清除浮动
