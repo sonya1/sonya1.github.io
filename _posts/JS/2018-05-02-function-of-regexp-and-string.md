@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 正则RegExp与String的方法
-category: workFighting
+category: JS
 tags: RegExp与String
 keywords: RegExp与String
 description: RegExp与String
