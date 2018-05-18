@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jQuery 常用资源
-category: star
+category: 前端star
 tags: jQuery
 keywords: jQuery
 description: 

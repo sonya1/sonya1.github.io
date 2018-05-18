@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 盒子、文字水平、垂直居中 大全
-category: HTML-CSS
+category: HTML CSS
 tags: 水平、垂直居中
 keywords: 水平、垂直居中
 description: 水平、垂直居中

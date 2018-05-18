@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JS中防止浏览器屏蔽window.open
-category: star
+category: 前端star
 tags: JavaScript
 description: JS中防止浏览器屏蔽window.open
 ---

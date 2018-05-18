@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JavaScript 常用资源
-category: star
+category: 前端star
 tags: JavaScript
 keywords: JavaScript
 description: 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 更新前端框架到Bootstrap3
-category: star
+category: 前端star
 tags: Blog
 keywords: Bootstrap
 description: Bootstrap3正式版出来几天了，考虑更新完全没影响，就抽空升级一下

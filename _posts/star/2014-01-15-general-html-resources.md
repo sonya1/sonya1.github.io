@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HTML 常用资源
-category: star
+category: 前端star
 tags: HTML
 keywords: HTML
 description: 

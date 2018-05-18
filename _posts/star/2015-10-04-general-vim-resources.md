@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Vim 常用资源
-category: star
+category: other
 tags: Vim
 keywords: Vim
 ---

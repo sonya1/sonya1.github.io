@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SVN 常用资源
-category: star
+category: other
 tags: SVN
 keywords: SVN
 description: 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: html实战+教程
-category: HTML-CSS
+category: HTML CSS
 keywords: 前端
 ---
 

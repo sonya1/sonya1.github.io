@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Git 常用资源
-category: star
+category: other
 tags: Git
 keywords: Git
 ---

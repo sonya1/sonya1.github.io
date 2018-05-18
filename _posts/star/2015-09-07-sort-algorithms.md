@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 七种常见经典排序算法总结（C++实现）
-category: star
+category: 算法
 tags: 算法
 keywords: 算法,排序,Sort,Algorithm
 ---

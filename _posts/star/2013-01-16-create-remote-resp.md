@@ -1,7 +1,7 @@
 ---
 layout: post
 title: git创建远程库
-category: star
+category: other
 tags: Git
 description: git创建远程库
 ---

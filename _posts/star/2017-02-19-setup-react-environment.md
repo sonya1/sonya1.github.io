@@ -1,7 +1,7 @@
 ---
 layout: post
 title: React 学习 - 开发环境搭建
-category: star
+category: 前端star
 tags: React
 keywords: React
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JavaScript变量作用域
-category: star
+category: 前端star
 tags: JavaScript
 description: 转载学习
 ---
