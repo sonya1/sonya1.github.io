@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 块作用域--《你不知道的JS 上》
-category: 前端
-keywords: 前端
+category: HTML&CSS
+keywords: 块作用域
 ---
 
 JS中块作用域的例子：with,try/catch，let，const。
