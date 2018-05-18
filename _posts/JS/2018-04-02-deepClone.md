@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Javascript深克隆原理与实现
-category: workFighting
+category: JS
 tags: Javascript深克隆
 keywords: Javascript深克隆
 description: Javascript深克隆原理与实现
