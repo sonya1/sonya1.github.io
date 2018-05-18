@@ -13,7 +13,7 @@ socket进行connect连接，返回220代表成功。
 则成功。
 
 代码：
-```
+```c
 send(socket,"USER anonymous\r\n",strlen("USER anonymous\r\n"),0);//sizeof不可以
 send(socket,"PASS anonymous\r\n",strlen("PASS anonymous\r\n"),0);
 ```
