@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 研究生生活
-category: talk
+category: life
 tags: blog 
 keywords: blog
 description: 
