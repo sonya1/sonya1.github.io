@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 前端学习计划
-category: talk
+category: life
 tags: 前端 学习
 keywords: 前端 学习
 description: 
