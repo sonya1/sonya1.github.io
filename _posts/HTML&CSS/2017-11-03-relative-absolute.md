@@ -1,8 +1,8 @@
 ---
 layout: post
 title: CSS中的绝对定位与相对定位
-category: 前端
-keywords: 前端
+category: HTML&CSS
+keywords: 绝对定位、相对定位
 ---
 
 
