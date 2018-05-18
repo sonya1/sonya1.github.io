@@ -3,7 +3,7 @@ layout: post
 title: 从点击到呈现 — 详解一次HTTP请求
 category: HTTP
 tags: HTTP
-keywords:详解一次HTTP请求
+keywords: 详解一次HTTP请求
 description: 详解一次HTTP请求
 ---
 
