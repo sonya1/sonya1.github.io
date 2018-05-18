@@ -1,7 +1,7 @@
 ---
 layout: post
 title: flex布局
-category: workFighting
+category: HTML&CSS
 tags: flex
 keywords: flex
 description: flex layout
