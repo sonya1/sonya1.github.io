@@ -1,7 +1,7 @@
 ---
 layout: post
 title: hover操作以及兄弟选择器+，~
-category: workFighting
+category: HTML&CSS
 tags: hover,兄弟选择器
 keywords: hover,兄弟选择器
 description: hover,兄弟选择器
