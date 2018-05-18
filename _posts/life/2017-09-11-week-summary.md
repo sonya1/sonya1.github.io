@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 2017-09-11周报
-category: 周报
+category: life
 keywords: 周报
 ---
 
