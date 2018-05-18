@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 从点击到呈现 — 详解一次HTTP请求
-category: workFighting
-tags: 从点击到呈现 — 详解一次HTTP请求
-keywords: 从点击到呈现 — 详解一次HTTP请求
-description: 从点击到呈现 — 详解一次HTTP请求
+category: HTTP
+tags: HTTP
+keywords:详解一次HTTP请求
+description: 详解一次HTTP请求
 ---
 
 原文来自：[媛媛的小窝——从点击到呈现 — 详解一次HTTP请求](http://www.zyy1217.com/2017/03/01/%E4%BB%8E%E7%82%B9%E5%87%BB%E5%88%B0%E5%91%88%E7%8E%B0%20%E2%80%94%20%E8%AF%A6%E8%A7%A3%E4%B8%80%E6%AC%A1HTTP%E8%AF%B7%E6%B1%82/)
