@@ -8,13 +8,13 @@ description: RegExp与String
 ---
 
 正则表达式的方法：
-```
+```javascript
 reg.test( str );  //true or false
 reg.exec( str );  //返回匹配值（一个数组[匹配值，分组，index:匹配值的开始位置，input:str值]），没找到返回null。
 ```
 
 字符串中有关正则的方法：
-```
+```javascript
 str.search( reg );  //返回找到的开始位置,没找到-1
 str.replace( reg , newStr );  
 str.match( reg );  //返回匹配值组成的数组 str.match();  -> returns [""]
@@ -27,7 +27,7 @@ test的用法和exec一致，只不过返回值是 true false。
 - 1、第一种定义：
 
 new RegExp(pattern, attributes);
-```
+```javascript
 var reg = new RegExp(“abc”,”g”)
 ```
 
@@ -42,21 +42,21 @@ attributes：g,全局匹配，i不区分大小写，m执行多行匹配，用最
 ## exec和match的区别：
 - 1.exec是正则表达式的方法，而不是字符串的方法，它的参数才是字符串，如下所示：
 
-```
+```javascript
 var reg = new RegExp("abc") ; 
 var str = "3abc4，5abc6";
 reg.exec(str ); 
 ``` 
 
 - 2. match是字符串执行匹配正则表达式规则的方法，他的参数是正则表达式，如
-```
+```javascript
 var reg = new RegExp("abc") ; 
 var str = "3abc4,5abc6";
 str.match(reg);
 ```
 
 当正则表达式为非全局匹配,exec和match的作用是一样的：
-```
+```javascript
 var reg = new RegExp("a(bc)") ; 
 var str = "3abc4,5abc6";
 console.log(reg.exec(str));//["abc", "bc", index: 1, input: "3abc4,5abc6"]
@@ -84,7 +84,7 @@ input 属性则存放的是被检索的字符串 string。
 当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。
 
 这就是说，我们可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。这里引入lastIndex属性，这货只有跟g和test（或者g和exec）三者搭配时才有作用。它是pattern的一个属性，一个整数，标示开始下一次匹配的字符位置。
-```
+```javascript
 var reg = new RegExp("a(bc)","g") ; 
 var str = "3abc4,5abc6";
 do {
@@ -106,7 +106,7 @@ lastIndex:0
 当使用全局模式匹配时，match直接返回一个字符串数组,获得的信息远没有exec多，但是使用方式简单。
 
 实例如下：
-```
+```javascript
 var reg = new RegExp("a(bc)","g") ; 
 var str = "3abc4,5abc6";
 console.log(reg.exec(str));
