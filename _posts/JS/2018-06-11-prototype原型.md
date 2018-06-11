@@ -167,3 +167,4 @@ BUT f1的这个hasOwnProperty方法是从哪里来的？ f1本身没有，Foo.pr
 ### 七、原型链的灵活性
 可以添加或修改原型上的属性或方法，所以说很灵活。不像java一样。
 
+原文参考：[王福朋的博客园——深入理解javascript原型](http://www.cnblogs.com/wangfupeng1988/p/3977924.html)
