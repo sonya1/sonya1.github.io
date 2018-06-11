@@ -1,8 +1,8 @@
 ---
 layout: post
-title: prototype原型
+title: JS中的原型和原型链,prototype和__proto__
 category: JS
-tags: prototype原型
+tags: prototype,原型,原型链,__proto__
 keywords: prototype原型
 description: 
 ---
