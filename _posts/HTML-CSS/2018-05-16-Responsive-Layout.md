@@ -119,6 +119,27 @@ html{font-size:100%;}
 
 不理解rem的童鞋，在这里给大家推荐一篇写的不错的博客(http://www.cnblogs.com/YYvam1288/p/5123272.html)
 
+#### 如何使用rem单位？
+1.确定计数：一般10px，自己记住就行，不用写进代码里
+
+2.
+```css
+html{font-size:百分数;}  /*百分数：基数/16*/
+```
+
+基数=10px 百分数=10/16 = 62.5%
+
+基数=14px 百分数=14/16 = 87.5%
+
+3.px换算rem
+
+rem=想要设的px值/基数
+
+举例：若容器字体想设为14px，则设为14/10 = 14.4rem
+
+rem是以html的font-size
+em是以body的font-size
+
 ### 5.响应式设计需要注意的问题
 
 1. 宽度不固定，可以使用百分比
@@ -171,3 +192,5 @@ background-size:contain; 等比缩小图片来适应元素的尺寸
 - 响应式图片
 
 原文来自：[媛媛的小窝——web前端开发之几种布局方式之响应式布局](http://www.zyy1217.com/2016/12/19/web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E4%B9%8B%E5%87%A0%E7%A7%8D%E5%B8%83%E5%B1%80%E6%96%B9%E5%BC%8F%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/)
+
+响应式布局入门[响应式布局入门]:(https://www.cnblogs.com/Wayou/p/responsive_design_step_by_step.html)
