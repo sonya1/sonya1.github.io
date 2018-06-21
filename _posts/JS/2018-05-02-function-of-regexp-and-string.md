@@ -117,6 +117,21 @@ console.log(str.match(reg));
 ["abc", "abc"]
 ```
 
+## 正则的例子
+1.匹配账号是否合法（字母开头，允许5-16位，允许字母数字下划线）
+```js
+^[a-zA-Z][\w]{4-15}$
+```
+
+2.将姓名first与last反过来
+```js
+var re = /(\w+)\s(\w+)/;
+var str = "John Smith";
+var newStr = str.replace(re,"$2 $1");
+console.log(newStr);  //"Smith John"
+```
+
+
 ## 总结
 
 当正则表达式定义为非全局匹配时，exec和match执行的结果是一样，均返回第一个匹配的字符串内容,返回数组
