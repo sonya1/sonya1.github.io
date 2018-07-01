@@ -10,6 +10,10 @@ keywords: 前端
 ## $.extend()
 把两个或者更多的对象合并到第一个当中。
 
+$.extend([deep],target,object1,object2 [,object n]);
+
+deep为true表示是否深度合并对象，false不深度合并。
+
 相当于类属性，由类直接调用。
 ```js
 
