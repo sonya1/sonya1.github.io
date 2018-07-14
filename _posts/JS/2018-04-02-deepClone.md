@@ -7,159 +7,266 @@ keywords: Javascript深克隆
 description: Javascript深克隆原理与实现
 ---
 
-原文来自：[媛媛的小窝——Javascript深克隆原理与实现](http://www.zyy1217.com/2017/01/05/Javascript%E6%B7%B1%E5%85%8B%E9%9A%86%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/)
+原文来自：[https://www.cnblogs.com/Chen-XiaoJun/p/6217373.html](https://www.cnblogs.com/Chen-XiaoJun/p/6217373.html)
 
-一. js中的对象
-谈到对象的克隆，必定要说一下对象的概念。
+## 深拷贝的实现方式
+要完全复制又不能修改到原对象，这时候就要用 Deep Copy，这里会介绍几种Deep Copy 的方式。
 
-js中的数据类型分为两大类：原始类型和对象类型。
+### 1、手动复制
 
-原始类型包括：数值number、字符串string、布尔值boolean、null、undefined.基本数据类型保存在栈中，
-对象类型包括：对象即是属性的集合，当然这里又有两个特殊的对象—-函数Array、数组（键值的有序集合）。引用数据类型的值是对象，保存在堆中。
-这两种类型在复制克隆的时候是有很大区别的。原始类型存储的是对象的实际数据，而对象类型存储的是对象的引用地址（对象的实际内容单独存放，为了减少数据开销通常存放在内存中
+把一个对象的属性复制给另一个对象的属性
+```js
+var obj1 = { a: 10, b: 20, c: 30 };
+var obj2 = { a: obj1.a, b: obj1.b, c: obj1.c };
+obj2.b = 100;
+console.log(obj1);
+// { a: 10, b: 20, c: 30 } <-- 沒被改到
+console.log(obj2);
+// { a: 10, b: 100, c: 30 }
+```
+但这样很麻烦，要一个一个自己复制；而且这样的本质也不能算是 Deep Copy，因为对象里面也可能回事对象，如像下面这个状况：
 
-这两种数据类型存储方式有很大区别，尤其是在参数传递上。可以看看下面的例子。
+```js
+var obj1 = { body: { a: 10 } };
+var obj2 = { body: obj1.body };
+obj2.body.a = 20;
+console.log(obj1);
+// { body: { a: 20 } } <-- 被改到了
+console.log(obj2);
+// { body: { a: 20 } }
+console.log(obj1 === obj2);
+// false
+console.log(obj1.body === obj2.body);
+// true
+```
+虽然obj1跟obj2是不同对象，但他们会共享同一个obj1.body，所以修改obj2.body.a时也会修改到旧的。
 
-参数的传递
-Javascript访问变量有按值传递与按引用传递，但是参数只能按值传递
+### 2、对象只有一层的话可以使用：Object.assign()函数
 
-举例如下：
+Object.assign({}, obj1)的意思是先建立一个空对象{}，接着把obj1中所有的属性复制过去，所以obj2会长得跟obj1一样，这时候再修改obj2.b也不会影响obj1。
 
-声明一个对象person，它是一个引用类型，函数传递的参数是person对象的值，也就是他的内存地址，
+因为Object.assign跟我们手动复制的效果相同，所以一样只能处理深度只有一层的对象，没办法做到真正的 Deep Copy。不过如果要复制的对象只有一层的话可以考虑使用它。
 
-function setName(obj)
-{ 
-  obj.name="我是传递的"; 
-  obj=new Object(); 
-  obj.name="我是new出来的"; 
-} 
-var person=new Object(); 
-setName(person); 
-console.log(person.name);
-以上代码的弹出值是:我是传递的，很多人可能会以为将会弹出“我是new出来的”，下面进行一下简单的分析:
+### 3、转成 JSON 再转回来
 
-在函数外面创建一个对象，并将对象的引用赋值给变量person，person中存储的是对象在内存中的存储地址，当为函数传递参数时，就是传递的在函数外面创建的对象的地址。在函数中，为外面创建的对象创建一个自定义属性name，然后又创建一个新的对象，并将新对象的地址赋值给obj，这个时候obj指向的并不是函数外面创建的对象，所以外面对象name属性不会被改变。
+用JSON.stringify把对象转成字符串，再用JSON.parse把字符串转成新的对象。
+```js
+var obj1 = { body: { a: 10 } };
+var obj2 = JSON.parse(JSON.stringify(obj1));
+obj2.body.a = 20;
+console.log(obj1);
+// { body: { a: 10 } } <-- 沒被改到
+console.log(obj2);
+// { body: { a: 20 } }
+console.log(obj1 === obj2);
+// false
+console.log(obj1.body === obj2.body);
+// false
+```
+这样做是真正的Deep Copy，这种方法简单易用。
 
-总的来说，就是函数内创建object对象不会改变外面的属性值
+但是这种方法也有不少坏处，譬如它会抛弃对象的constructor。也就是深拷贝之后，不管这个对象原来的构造函数是什么，在深拷贝之后都会变成Object。
 
-二、克隆的概念
-浅度克隆：原始类型为值传递，对象类型仍为引用传递。
+这种方法能正确处理的对象只有 Number, String, Boolean, Array, 扁平对象，即那些能够被 json 直接表示的数据结构。RegExp对象是无法通过这种方式深拷贝。
 
-深度克隆：所有元素或属性均完全复制，与原对象完全脱离，也就是说所有对于新对象的修改都不会反映到原对象中。
+也就是说，只有可以转成JSON格式的对象才可以这样用，像function没办法转成JSON。
+```js
+var obj1 = { fun: function(){ console.log(123) } };
+var obj2 = JSON.parse(JSON.stringify(obj1));
+console.log(typeof obj1.fun);
+// 'function'
+console.log(typeof obj2.fun);
+// 'undefined' <-- 没复制
+```
+要复制的function会直接消失，所以这个方法只能用在单纯只有数据的对象。
 
-三、浅克隆的表现
-对于原始类型即使我们采用普通的克隆方式仍能得到正确的结果，原因就是原始类型存储的是对象的实际数据。
-
-对象类型
-
-简单的循环遍历无法对复杂嵌套对象进行深度克隆，（函数除外）。因此需要递归循环遍历，实现深克隆
-
-四、深克隆的实现
-　　为了保证对象的所有属性都被复制到，我们必须知道如果for循环以后，得到的元素仍是Object或者Array，那么需要再次循环，直到元素是原始类型或者函数为止。为了得到元素的类型，我们定义一个通用函数，用来返回传入对象的类型。
-
- //返回传递给他的任意对象的类
-function isClass(o){
-    if(o===null) return "Null";
-    if(o===undefined) return "Undefined";
-    return Object.prototype.toString.call(o).slice(8,-1);
-}
-为什么不直接用toString方法？这是为了防止对象中的toString方法被重写，为了正确的调用toString()版本，必须间接的调用Function.call()方法
-
-为什么不使用typeof来直接判断类型？因为对于Array而言，使用typeof（Array）返回的是object，所以不能得到正确的Array，这里对于后续的数组克隆将产生致命的问题。
-
-确定是那种基本数据类型用typeof,确定是哪种引用数据类型用instanceof
-
-//深度克隆
-function deepClone(obj){
-    var result,oClass=isClass(obj);
-        //确定result的类型
-    if(oClass==="Object"){
-        result={};
-    }else if(oClass==="Array"){
-        result=[];
-    }else{
-        return obj;
+### 4、递归拷贝
+```js
+function deepClone(initalObj, finalObj) {    
+  var obj = finalObj || {};    
+  for (var i in initalObj) {        
+    if (typeof initalObj[i] === 'object') {  //数组或对象
+      obj[i] = (initalObj[i].constructor === Array) ? [] : {};            
+      arguments.callee(initalObj[i], obj[i]);  //递归调用
+    } else {
+      obj[i] = initalObj[i];
     }
-    for(key in obj){
-        var copy=obj[key];
-        if(isClass(copy)=="Object" || isClass(copy)=="Array"){
-            result[key]=arguments.callee(copy);//递归调用
-        }else{
-            result[key]=obj[key];
-        }
-    }
-    return result;
+  }    
+  return obj;
 }
-//返回传递给他的任意对象的类
-function isClass(o){
-    if(o===null) return "Null";
-    if(o===undefined) return "Undefined";
-    return Object.prototype.toString.call(o).slice(8,-1);
-}
-var oPerson={
-    oName:"rookiebob",
-    oAge:"18",
-    oAddress:{
-        province:"beijing"
-    },    
-    ofavorite:[
-        "swimming",
-        {reading:"history book"}
-    ],
-    skill:function(){
-        console.log("bob is coding");
+
+var str = {};
+var obj = { a: {a: "hello", b: 21} };
+deepClone(obj, str);
+console.log(str.a);
+```
+上述代码确实可以实现深拷贝。但是当遇到两个互相引用的对象，会出现死循环的情况。
+
+为了避免相互引用的对象导致死循环的情况，则应该在遍历的时候判断是否相互引用对象，如果是则退出循环。
+
+改进版代码如下：????
+```js
+function deepClone(initalObj, finalObj) {    
+  var obj = finalObj || {};    
+  for (var i in initalObj) {        
+    var prop = initalObj[i];        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+    if(prop === obj) {            
+      continue;
+    }        
+    if (typeof prop === 'object') {
+      obj[i] = (prop.constructor === Array) ? [] : {};            
+      arguments.callee(prop, obj[i]);
+    } else {
+      obj[i] = prop;
     }
-};
-//深度克隆一个对象
-var oNew=deepClone(oPerson);
- 
-oNew.ofavorite[1].reading="picture";
-console.log(oNew.ofavorite[1].reading);//picture
-console.log(oPerson.ofavorite[1].reading);//history book
- 
-oNew.oAddress.province="shanghai";
-console.log(oPerson.oAddress.province);//beijing
-console.log(oNew.oAddress.province);//shanghai
-参考知乎上的答案javascript中的深拷贝和浅拷贝？
+  }    
+  return obj;
+}
 
-不过这段代码只能克隆变量，函数，数组与JSON对象。与jquery的深克隆机制相同，无法正确深复制 JSON 对象以外的对象。
 
-第三方库：
-jQuery —— $.extend()
-在jQuery中可以通过 .extend()方法来完成深复制，调用.extend(true, {}, …)就可以实现深复制，参考下面的例子：
+var str = {};
+var obj = {};
+obj.a = obj;
+obj.b = 21;
+deepClone(obj, str);
+console.log(str.a);
+```
+### 5、使用Object.create()方法
 
-var x = {
+直接使用var newObj = Object.create(oldObj)，可以达到深拷贝的效果。
+```js
+function deepClone(initalObj, finalObj) {    
+  var obj = finalObj || {};    
+  for (var i in initalObj) {        
+    var prop = initalObj[i];        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+    if(prop === obj) {            
+      continue;
+    }        
+    if (typeof prop === 'object') {
+      obj[i] = (prop.constructor === Array) ? [] : Object.create(prop);
+    } else {
+      obj[i] = prop;
+    }
+  }    
+  return obj;
+}
+```
+### 6、jquery
+
+jquery 有提供一个$.extend可以用来做 Deep Copy。
+```js
+var $ = require('jquery');
+var obj1 = {
     a: 1,
     b: { f: { g: 1 } },
-    c: [ 1, 2, 3 ]
+    c: [1, 2, 3]
 };
-var y = $.extend({}, x),          //shallow copy
-    z = $.extend(true, {}, x);    //deep copy
-y.b.f === x.b.f       // true
-z.b.f === x.b.f       // false
-在jQuery的源码 - src/core.js #L121 可以找到$.extend()源码的实现
+var obj2 = $.extend(true, {}, obj1);
+console.log(obj1.b.f === obj2.b.f);
+// false
+```
+### 7、lodash
 
-lodash —— .clone() / .cloneDeep()
-在lodash中关于复制的方法有两个，分别是.clone()和.cloneDeep()。其中.clone(obj, true)等价于.cloneDeep(obj)。使用上，lodash和前两者并没有太大的区别，但看了源码会发现， jQuery 不过60多行，可 lodash 中与深复制相关的代码却有上百行，这是什么道理呢？
+另外一个很热门的函数库lodash，也有提供_.cloneDeep用来做 Deep Copy。
+```js
+var _ = require('lodash');
+var obj1 = {
+    a: 1,
+    b: { f: { g: 1 } },
+    c: [1, 2, 3]
+};
+var obj2 = _.cloneDeep(obj1);
+console.log(obj1.b.f === obj2.b.f);
+// false
+```
+这个性能还不错，使用起来也很简单。
 
-var $ = require("jquery"),
-    _ = require("lodash");
-var arr = new Int16Array(5),
-    obj = { a: arr },
-    obj2;
-arr[0] = 5;
-arr[1] = 6;
-// 1. jQuery
-obj2 = $.extend(true, {}, obj);
-console.log(obj2.a);                            // [5, 6, 0, 0, 0]
-Object.prototype.toString.call(obj2);           // [object Int16Array]
-obj2.a[0] = 100;
-console.log(obj);                               // [100, 6, 0, 0, 0]
-//此处jQuery不能正确处理Int16Array的深复制！！！
-// 2. lodash
-obj2 = _.cloneDeep(obj);                       
-console.log(obj2.a);                            // [5, 6, 0, 0, 0]
-Object.prototype.toString.call(arr2);           // [object Int16Array]
-obj2.a[0] = 100;
-console.log(obj);                               // [5, 6, 0, 0, 0]
-通过上面这个例子可以初见端倪，jQuery 无法正确深复制 JSON 对象以外的对象，而我们可以从下面这段代码片段可以看出 lodash 花了大量的代码来实现 ES6 引入的大量新的标准对象。更厉害的是，lodash 针对存在循环引用的对象的处理也是非常出色的。因此相较而言，lodash 在深复制上的行为反馈比前两个库好很多，是更拥抱未来的一个第三方库。
+## 8.数组的slice，concat只能深拷贝一层 要注意
+```js
+var a=[1,2,3,4],
+    b=a.slice();
+a[0]=2;
+console.log(a,b);   //[2,2,3,4]  [1,2,3,4]  实现深拷贝了
+
+var a=[0,1,[2,3],4],
+        b=a.slice();
+a[0]=1;
+a[2][0]=1;
+console.log(a,b);  // [1,1,[1,3],4]  [0,1,[1,3],4] 第二层的还是共用了
+```
+所以，数组的slice，concat只能深拷贝一层，与Object.assign()函数类似，不是真正的深拷贝。
+
+## ES6数组的深拷贝 
+第一种：Array.from(要复制的数组);
+```js
+var arr1=[1,2,3];
+var arr2=Array.from(arr1);
+arr1.push(4);
+alert(arr1);  //1234
+alert(arr2);  //123
+arr2.push(5);
+alert(arr1);  //1234
+alert(arr2);  //1235
+```
+
+第二种：...
+```js
+var arr1=[1,2,3];
+var arr2=[...arr1];
+arr1.push(4);
+alert(arr1);  //1234
+alert(arr2);  //123
+arr2.push(5);
+alert(arr1);  //1234
+alert(arr2);  //1235
+```
+第二种这个方法也可以用在函数的形参上面。
+```js
+function show(...arr1){  //直接来复制arguments这个伪数组，让它变成真正的数组，从而拥有数组的方法。
+  alert(arr1); //1234
+  arr1.push(5);
+  alert(arr1); //12345
+}
+show(1,2,3,4)
+
+```
+
+深拷贝的问题：
+```js
+function P(obj){}
+
+P.prototype.caa=function(){console.log(1)};
+
+var p =new RegExp('/[.]/');
+
+var obj1;
+
+obj1=new P();
+
+var newObj;
+
+obj1={a:1,b:2,c:3,d:{a:1,b:2,c:3,d:{a:1,b:2,c:3,d:{a:1,b:2,c:3,d:Date.now(),e:p}}}};//一个多层嵌套对象
+
+function objCopy(obj){
+    var copy_obj={};
+    for(var i in obj){
+        if(typeof obj[i]=='object'){//如果对应KEY的数据类型是object的话，就进行递归调用
+              copy_obj[i]=objCopy(obj[i]);
+        }else{
+              copy_obj[i]=obj[i];
+        }
+    }
+    return copy_obj;
+}
+
+var newObj=objCopy(obj1);
+
+console.log(obj1);
+
+console.log(newObj);
+//正则表达式 赋值有问题
+```
+
+## 循环引用的问题解决
+
+原文查看：[http://www.24-80.com/javascript/article-97.html](http://www.24-80.com/javascript/article-97.html)
