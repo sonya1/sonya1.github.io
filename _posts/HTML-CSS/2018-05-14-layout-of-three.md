@@ -119,6 +119,18 @@ description: 三栏布局
 </div>
 ```
 ### - 5.圣杯布局--中左右，中间100%宽，左右定位
+1.将三者都 float:left , 再加上一个position:relative (因为相对定位后面会用到）
+
+2.middle部分 width:100%占满
+
+3.此时middle占满了，所以要把left拉到最左边，使用margin-left:-100%
+
+4.这时left拉回来了，但会覆盖middle内容的左端，要把middle内容拉出来，所以在外围container加上 padding:0 220px 0 200px
+
+5.middle内容拉回来了，但left也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px
+
+6.到这里大概就自适应好了。如果想container高度保持一致可以给left middle right都加上min-height:130px
+
 ```html
 <style>
 .san5_parent{
@@ -213,6 +225,22 @@ footer {
 ```
 
 ### - 6.双飞翼布局--中左右，中间padding/margin
+1.html代码中，main要放最前边，sub  extra
+
+2.将main  sub  extra 都float:left
+
+3.将main占满 width:100%
+
+4.此时main占满了，所以要把sub拉到最左边，使用margin-left:-100%  同理 extra使用margin-left:-220px
+
+（这时可以直接继续上边圣杯布局的步骤，也可以有所改动）
+
+5.main内容被覆盖了吧，除了使用外围的padding，还可以考虑使用margin。
+
+给main增加一个内层div-- main-inner, 然后margin:0 220px 0 200px
+
+6.main正确展示
+
 ```html
 <style>
 .san6_parent{
