@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Javascript深克隆原理与实现
+title: 深拷贝
 category: JS
-tags: Javascript深克隆
-keywords: Javascript深克隆
-description: Javascript深克隆原理与实现
+tags: 深克隆
+keywords: 深克隆
+description: 深克隆
 ---
 
 原文来自：[https://www.cnblogs.com/Chen-XiaoJun/p/6217373.html](https://www.cnblogs.com/Chen-XiaoJun/p/6217373.html)
@@ -24,7 +24,7 @@ console.log(obj1);
 console.log(obj2);
 // { a: 10, b: 100, c: 30 }
 ```
-但这样很麻烦，要一个一个自己复制；而且这样的本质也不能算是 Deep Copy，因为对象里面也可能回事对象，如像下面这个状况：
+但这样很麻烦，要一个一个自己复制；而且这样的本质也不能算是 Deep Copy，因为对象里面也可能是对象，如像下面这个状况：
 
 ```js
 var obj1 = { body: { a: 10 } };
@@ -239,13 +239,11 @@ P.prototype.caa=function(){console.log(1)};
 
 var p =new RegExp('/[.]/');
 
-var obj1;
-
-obj1=new P();
+var obj = new P();  //
 
 var newObj;
 
-obj1={a:1,b:2,c:3,d:{a:1,b:2,c:3,d:{a:1,b:2,c:3,d:{a:1,b:2,c:3,d:Date.now(),e:p}}}};//一个多层嵌套对象
+var obj1={a:1,b:2,c:3,d:{a:1,b:2,c:3,d:{a:1,b:2,c:3,d:{a:1,b:2,c:3,d:Date.now(),e:p}}}};//一个多层嵌套对象  
 
 function objCopy(obj){
     var copy_obj={};
@@ -265,8 +263,86 @@ console.log(obj1);
 
 console.log(newObj);
 //正则表达式 赋值有问题
+
+var newObj = objCopy(obj);
+
+console.log(newObj);  //{caa:f(){}}  原型上的方法是可以拷贝的。
 ```
+JS的一些特殊对象，有些结构并不与一般对象结构相同，需要用其他特殊的方式进行特别处理，正则对象就是（另外，如果是一个构造函数所生成的对象，也是可以拷贝到该构造函数的方法的）。
 
 ## 循环引用的问题解决
+
+循环引用时，会递归出错。
+
+```js
+var source = {a:1,b:{name:"sonya"}};
+    source.xx = source;  //单个属性 循环引用，不会报错
+    function objCopy(obj){
+        var copy_obj={};
+        var index=0;
+        for(var i in obj){
+            if(index==0){
+                obj.copyKey=1;
+            }
+
+            if(typeof obj[i]=='object'){ //如果对应KEY的数据类型是object的话，就进行递归调用
+                console.log(obj[i]);
+                if(!obj[i].copyKey){  //obj[i].copyKey为空,没有循环引用的对象
+                    copy_obj[i]=objCopy(obj[i]);
+                    delete copy_obj[i].copyKey;
+                    delete obj[i].copyKey;
+                }else{  //循环引用的情况，直接浅复制
+                    copy_obj[i]=obj[i];
+                    delete copy_obj[i].copyKey;
+                    delete obj[i].copyKey;
+                }
+            }else{
+                copy_obj[i]=obj[i];
+            }
+            index++;
+        }
+
+        return copy_obj;
+    }
+
+var res = objCopy(source);
+console.log(source);
+console.log(res);
+```
+如果多次引用，因为这个copyKey的mark，可能在第一次调用的时候被清除了，第二次调用的时候还是会陷入循环引用，产生循环引用的错误，测试了一下，和猜测的一样，于是我又改了一下代码。
+```js
+var source = {a:1,b:{name:"sonya"}};
+source.xx = source; 
+source.yy = source;  //多个属性 循环引用
+
+function objCopy(obj,key){
+    var copy_obj={};
+    var index=0;
+    for(var i in obj){
+        if(index==0){//添加copyMark
+            obj.copyKey=1;
+        }
+        if(typeof obj[i]=='object'){//如果对应KEY的数据类型是object的话，就进行递归调用
+            if(!obj[i].copyKey && key!=i){  //没有循环引用的对象
+                copy_obj[i]=objCopy(obj[i],i);//递归调用增加对对象KEY的判断
+                delete copy_obj[i].copyKey;//去除copyMark，来自递归调用
+                delete obj[i].copyKey;//去除copyMark，来自递归调用
+            }else{
+                copy_obj[i]=obj[i];
+                delete copy_obj[i].copyKey;//去除copyMark，来自赋值
+                delete obj[i].copyKey;//去除copyMark，来自赋值
+            }
+        }else{
+            copy_obj[i]=obj[i];
+        }
+        index++;
+    }
+    return copy_obj;
+}
+
+var res=objCopy(source);
+console.log(source);
+console.log(res);
+```
 
 原文查看：[http://www.24-80.com/javascript/article-97.html](http://www.24-80.com/javascript/article-97.html)
