@@ -212,7 +212,7 @@ footer {
 }
 ```
 
-### - 6.双飞翼布局--中左右，中间padding
+### - 6.双飞翼布局--中左右，中间padding/margin
 ```html
 <style>
 .san6_parent{
@@ -230,12 +230,12 @@ footer {
   margin:0 220px 0 200px;
 }
 .san6_parent .left{
-  margin-left: -100%;  /*拉到最左*/
+  margin-left: -100%;  /*拉到最左,100% 不能写为px*/  
   width: 200px;
   background: pink;
 }
 .san6_parent .right{
-  margin-left: -220px;  /*拉到最右*/
+  margin-left: -220px;  /*拉到最右，不能写成100%*/
   width: 220px;
   background: pink;
 }
