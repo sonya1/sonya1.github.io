@@ -13,7 +13,7 @@ keywords: 前端
 2.简而言之，每一张图片都应该有一个alt属性！alt属性，也被称为alt text, 是当图片无法加载时显示的替代文本。alt属性对于盲人或视觉损伤的用户理解一幅图片中所描绘的内容非常重要，搜索引擎也会搜索alt属性。
 
 3.如果你想把一个文本输入字段设置为必填项，在你的input元素中加上required属性就可以了，你可以使用：
-“<input type="text" required>”
+<input type="text" required>
 
 注意：required属性在Safari浏览器中不起作用，请用其他浏览器来学习，推荐使用Chrome。
 
@@ -29,7 +29,6 @@ keywords: 前端
 
 9.CSS 通过使用Important覆盖所有其他样式.
 
-
 10.html插件： object   embed
 ```html
 <object width="400" height="50" data="bookmark.swf"></object>
@@ -38,7 +37,9 @@ keywords: 前端
 
 <embed width="400" height="50" src="/statics/demosource/bookmark.swf">
 ```
+
 12.超链接设置
+```html
 text-decoration: 参数
 主要用途是改变浏览器显示文字链接时的下划线。 
 参数取值范围： 
@@ -47,58 +48,69 @@ overline：为文字加上划线。
 line-through：为文字加删除线。 
 blink：使文字闪烁 。
 none：不显示上述任何效果。
+```
 
 13.背景图片固定
 背景图片固定控制背景图片是否随网页的滚动而滚动。如果不设置背景图片固定属性，浏览器默认背景图片随网页的滚动而滚动。为了避免过于花哨的背景图片在滚动时转移浏览者的注意力，一般都设为固定
+```html
 background-attachment: 参数。 
 参数取值范围：
 fixed：网页滚动时，背景图片相对于浏览器的窗口而言，固定不动。
 scroll：网页滚动时，背景图片相对于浏览器的窗口而言，一起滚动。
+```
 
-14.单词间距 
-word-spacing: 间隔距离。
-字母间距 
-letter-spacing: 字母间距。
+14. 
+```html
+单词间距  word-spacing: 间隔距离。
+
+字母间距  letter-spacing: 字母间距。
+```
 
 15.文本对齐
+```html
 text-align: 参数
 参数的取值：
 left：左对齐。
 right：右对齐。
 center：居中对齐。
 justify：相对左右对齐。
+
 垂直对齐
 vertical-align: 参数
 top：顶对齐。
 bottom：底对齐。
 text-top：相对文本顶对齐。
 text-bottom：相对文本底对齐。
-baseline：基准线对齐。
-middle：中心对齐。
+baseline：基准线对齐。  字母a的下边线
+middle：中心对齐。  字母a的上边线
 sub：以下标的形式显示。
 super：以上标的形式显示。
+
 文本缩进
 text-indent: 缩进距离。
 12px相当于一个文字距离。
+```
 
 16.空格
+```html
 white-space: 参数
 normal 正常
 pre 保留
 nowrap 不换行
-
+```
 
 17.显示样式 
+```html
 display: 参数 
 参数取值范围： 
 block：块级元素，在对象前后都换行 
 inline：在对象前后都不换行 
 list-item：在对象前后都换行，增加了项目符号 
 none：无显示
-
+```
 
 常用标签：
-
+```html
 引文区块<BLOCKQUOTE></BLOCKQUOTE> （通常会内缩）
 强调<EM></EM> （通常会以斜体显示）
 
@@ -121,7 +133,7 @@ none：无显示
 闪耀<BLINK></BLINK> （有史以来最被嘲弄的标签）
 
 移动字体(走马灯)：<marquee>写上你想写的字</marquee>
-
+```
 
 媒体查询：
 ```css
