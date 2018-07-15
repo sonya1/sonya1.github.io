@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vue-router原理
-category: workFighting
+category: vue
 tags: vue
 description: 
 ---
