@@ -135,7 +135,7 @@ jQuery在处理jsonp类型的ajax时，自动帮你生成回调函数并把数�
 
 ## 2.主域相同可以设置document.domain
 对于主域相同而子域不同的例子，可以通过设置document.domain的办法来解决。具体的做法是可以在http://www.a.com/a.html和http://script.a.com/b.html两个文件中分别加上document.domain = ‘a.com’；然后通过a.html文件中创建一个iframe，去控制iframe的contentDocument，这样两个js文件之间就可以“交互”了。当然这种办法只能解决主域相同而二级域名不同的情况，如果把script.a.com的domian设为alibaba.com，会报错！举例如下：
-```html
+```js
 //www.a.com上的a.html
 document.domain = 'a.com';
 var ifr = document.createElement('iframe');
