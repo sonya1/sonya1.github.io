@@ -143,7 +143,7 @@ ifr.src = 'http://script.a.com/b.html';
 ifr.style.display = 'none';
 document.body.appendChild(ifr);
 ifr.onload = function(){
-    var doc = ifr.contentDocument || ifr.contentWindow.document;
+    var doc = ifr.contentDocument || ifr.contentWindow.document;   //获取script.a.com/b.html页面，doc就是b.html的document。
     // 在这里操纵b.html
     alert(doc.getElementsByTagName("h1")[0].childNodes[0].nodeValue);
 };
