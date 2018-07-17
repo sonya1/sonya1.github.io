@@ -47,15 +47,17 @@ transiton: 过渡属性 过渡所需要时间 过渡动画函数 过渡延迟时
 - transiton-timing-function
 过渡函数，有如下几种：
 
-liner ：匀速
+linear 匀速。规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）。 
 
-ease-in：减速
+ease	规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）。
 
-ease-out：加速
+ease-in	规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）。
 
-ease-in-out：先加速再减速
+ease-out	规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）。
 
-cubic-bezier：三次贝塞尔曲线，可以定制 
+ease-in-out	规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）。
+
+cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
 
 ### 触发过渡
 单纯的代码不会触发任何过渡操作，需要通过用户的行为（如点击，悬浮等）触发，可触发的方式有：
@@ -79,7 +81,7 @@ transition是一次性的，不能重复发生，除非一再触发。
 
 transition只能定义开始状态和结束状态，不能定义中间状态，也就是说只有两个状态。
 
-一条transition规则，只能定义一个属性的变化，不能涉及多个属性。
+一条transition规则，只能定义一个属性的变化，不能涉及多个属性。 
 
 CSS Animation就是为了解决这些问题而提出的。
 
@@ -104,7 +106,7 @@ animation-delay：在开始执行动画时需要等待的时间
 
 animation-iteration-count：定义动画的播放次数，默认为1，如果为infinite，则无限次循环播放
 
-animation-direction：默认为nomal，每次循环都是向前播放，（0-100），另一个值为alternate，动画播放为偶数次则向前播放，如果为基数词就反方向播放
+animation-direction：默认为normal，每次循环都是向前播放，（0-100），另一个值为alternate，动画播放为偶数次则向前播放，如果为奇数次就反方向播放
 
 animation-state：默认为running，播放，paused，暂停
 
