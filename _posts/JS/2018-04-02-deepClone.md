@@ -47,6 +47,16 @@ Object.assign({}, obj1)的意思是先建立一个空对象{}，接着把obj1中
 
 因为Object.assign跟我们手动复制的效果相同，所以一样只能处理深度只有一层的对象，没办法做到真正的 Deep Copy。不过如果要复制的对象只有一层的话可以考虑使用它。
 
+### 2.1 对象只有一层的话可以使用:展开运算符...
+```js
+let a = {
+    age: 1
+}
+let b = {...a}
+a.age = 2
+console.log(b.age) // 1
+```
+
 ### 3、转成 JSON 再转回来
 
 用JSON.stringify把对象转成字符串，再用JSON.parse把字符串转成新的对象。
