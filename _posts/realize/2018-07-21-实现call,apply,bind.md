@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 实现call,apply
+title: 实现call,apply,bind
 category: realize
-tags: 实现call,apply
-keywords: 实现call,apply
-description: 实现call,apply
+tags: 实现call,apply,bind
+keywords: 实现call,apply,bind
+description: 实现call,apply,bind
 ---
 
 ## 可以从以下几点来考虑如何实现
@@ -49,3 +49,26 @@ Function.prototype.myApply = function (context) {
   return result
 }
 ```
+
+
+bind 和其他两个方法作用也是一致的，只是该方法会返回一个函数。并且我们可以通过 bind 实现柯里化。
+
+```js
+Function.prototype.myBind = function (context) {
+  if (typeof this !== 'function') {
+    throw new TypeError('Error')
+  }
+  var _this = this
+  var args = [...arguments].slice(1)
+  // 返回一个函数
+  return function F() {
+    // 因为返回了一个函数，我们可以 new F()，所以需要判断
+    if (this instanceof F) {
+      return new _this(args, ...arguments)
+    }
+    return _this.apply(context, args.concat(arguments))
+  }
+}
+```
+
+bind实现详见:[https://segmentfault.com/a/1190000009271416](https://segmentfault.com/a/1190000009271416)
