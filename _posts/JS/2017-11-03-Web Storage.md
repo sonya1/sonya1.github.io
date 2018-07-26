@@ -1,7 +1,7 @@
 ---
 layout: post
 title: cookie、session、webStorage的区别
-category: workFighting
+category: JS
 tags: Storage
 keywords: Storage
 description: Storage
