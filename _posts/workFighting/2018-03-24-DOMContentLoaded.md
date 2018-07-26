@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DOMContentLoaded
-category: JS
+category: workFighting
 tags: DOMContentLoaded
 keywords: DOMContentLoaded
 description: DOMContentLoaded
