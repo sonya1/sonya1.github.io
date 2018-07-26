@@ -42,6 +42,29 @@ description:
   为了可行起见，我们必须通过某种方式告诉服务，它正在从一个script元素调用，必须返回一个JSONP响应，而不应该是普通的JSON响应。这个可以通过在URL中添加一个查询参数来实现：例如，追加“?json”(或&json)。  
   
   在实践中，支持JSONP的服务不会强制指定客户端必须实现的回调函数名称，比如handleResponse。相反，它们使用查询参数的值，允许客户端指定一个函数名，然后使用函数名去填充响应。（见下例）许多支持JSONP的服务都能分辨出这个参数名。另一个常见的参数名称是callback，为了让使用到的服务支持类似特殊的需求，就需要在代码上做一些修改了。  
+  
+ 简单实现：
+  ```js
+  function jsonp(url, jsonpCallback, success) {
+     let script = document.createElement("script");
+     script.src = url;
+     script.async = true;
+     script.type = "text/javascript";
+     window[jsonpCallback] = function(data) {
+       success & success(data);
+     };
+     document.body.appendChild(script);
+}
+
+jsonp(
+   "http://xxx",
+   "callback",
+   function(value) {
+     console.log(value);
+   }
+);
+  ```
+  
   ```javascript
   //根据指定的url发送一个JSONP请求
 //然后把解析得到的响应数据传递给回调函数
