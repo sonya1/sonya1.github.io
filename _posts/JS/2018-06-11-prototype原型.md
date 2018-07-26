@@ -98,7 +98,7 @@ arr[2] = true;
 
 答：Object.prototype确实一个特例——它的__proto__指向的是null，切记切记！
 
-所以，Object.__proto__ === Function.prototype成立~~
+因为函数也是对象，所以有构造函数的隐式原型为Function.prototype。Object.__proto__ === Function.prototype成立~~
 
 ![终极图](https://images0.cnblogs.com/blog/138012/201409/181512068463597.png)
 
