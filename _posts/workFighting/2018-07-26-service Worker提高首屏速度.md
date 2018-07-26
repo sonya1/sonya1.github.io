@@ -1,7 +1,7 @@
 ---
 layout: post
 title: service Worker
-category: HTML-CSS
+category: workFighting
 tags: service Worker
 keywords: service Worker
 description: service Worker
