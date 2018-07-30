@@ -54,6 +54,13 @@ Function.prototype.myApply = function (context) {
 bind 和其他两个方法作用也是一致的，只是该方法会返回一个函数。并且我们可以通过 bind 实现柯里化。
 
 ```js
+function bind(fn, context){
+  return function(){
+    return fn.apply(context, arguments);
+  };
+}
+
+
 Function.prototype.myBind = function (context) {
   if (typeof this !== 'function') {
     throw new TypeError('Error')
